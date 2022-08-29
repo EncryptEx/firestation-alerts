@@ -13,7 +13,16 @@ class Alerts
                 } // skip check if not numeric
                 switch ($_GET['e']) {
                     case 1:
+                        $alertMsg = "No values recieved";
+                        break;
+                    case 2:
                         $alertMsg = "User and password do not match";
+                        break;
+                    case 3:
+                        $alertMsg = "Your account needs an email verification, please check your email.";
+                        break;
+                    case 4:
+                        $alertMsg = "Your account has been suspended.";
                         break;
 
                     default:
