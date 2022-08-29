@@ -20,11 +20,12 @@ $alerts = new Alerts();
 <body>
     <?php require realpath(__DIR__ . '/../private/templates/navbar.php');?>
     <div class="container col-xxl-8 px-4 py-5">
-        <form action="auth.php" method="POST" class="needs-validation row justify-content-center" novalidate>
+        <form action="./auth/login.php" method="POST" class="needs-validation row justify-content-center" novalidate>
             <div class="col-12 col-md-8 col-lg-6">
+                <h3>Login</h3>
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="input-group has-validation">
-                    <input name="email" type="email" class="form-control" id="inputEmail" required placeholder="john.snow@example.con">
+                    <input name="email" type="email" class="form-control" id="inputEmail" required placeholder="fireman@domain.com">
                     <div class="invalid-feedback">
                         Please introduce an email.
                     </div>
