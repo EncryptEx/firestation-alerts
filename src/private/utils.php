@@ -6,7 +6,7 @@
  */
 namespace Utils;
 # start vendors
-require realpath('./../../vendor/autoload.php');
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 # change timezone
 date_default_timezone_set('Europe/Madrid');
@@ -17,8 +17,9 @@ require 'cred.php';
 # import PDO
 use PDO;
 
-# import different modules
+# import different modules and initialitze database
 require 'db/Database.php';
+new Database();
 require 'auth/Auth.php';
 require 'alerts/Alerts.php';
 

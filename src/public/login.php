@@ -18,11 +18,15 @@ $alerts = new Alerts();
 </head>
 
 <body>
-    <?php require realpath(__DIR__ . '/../private/templates/navbar.php');?>
+    <?php require realpath(__DIR__ . '/../private/templates/navbar.php'); ?>
     <div class="container col-xxl-8 px-4 py-5">
         <form action="./auth/login.php" method="POST" class="needs-validation row justify-content-center" novalidate>
             <div class="col-12 col-md-8 col-lg-6">
                 <h3>Login</h3>
+                <?php
+                $alerts->retrieveAlert();
+
+                ?>
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="input-group has-validation">
                     <input name="email" type="email" class="form-control" id="inputEmail" required placeholder="fireman@domain.com">
@@ -43,10 +47,6 @@ $alerts = new Alerts();
         </form>
     </div>
 
-    <?php
-    $alerts->retrieveAlert();
-
-    ?>
     </div>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
