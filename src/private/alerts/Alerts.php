@@ -22,7 +22,7 @@ class Alerts {
                 <span class='align-middle'>
                     " . $error . "
                 </span>
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' onclick='window.location.href = window.location.href.split('?')[0];'></button>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' onclick=\"window.location.href = window.location.href.split('?')[0];\"></button>
                 </div>";
                 echo $errorTemplate;
             
