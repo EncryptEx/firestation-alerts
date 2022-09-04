@@ -21,6 +21,7 @@ use PDO;
 require 'db/Database.php';
 new Database();
 require 'auth/Auth.php';
+require 'auth/Verification.php';
 require 'alerts/Alerts.php';
 
 
