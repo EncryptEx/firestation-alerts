@@ -24,4 +24,14 @@ class Auth
             ];
         }
     }
+    public function Register(string $name, string $email, string $rawPassword){
+        global $pdo;
+        $password = hash("SHA256", $rawPassword);
+
+        $SQL_SELECT = "INSERT INTO `users` (id, name, email, password, status) VALUES (NULL, :name, :email, :password, :status)";
+        $selectStmt = $pdo->prepare($SQL_SELECT);
+        $input =   ['name'=>$name, 'email'=> $email, 'password'=>$password, 'status'=>0];
+        return $selectStmt->execute($input);
+    }
 }
+
