@@ -4,7 +4,7 @@ ini_set('session.gc_maxlifetime', 10800);
 
 session_start();
 
-require_once('./../private/utils.php');
+require_once('./../../private/utils.php');
 $auth = new Utils\Auth();
 $verification = new Utils\Verification();
 
