@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use Utils\Auth;
 
 require './../private/utils.php';
