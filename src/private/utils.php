@@ -26,4 +26,11 @@ require 'ui-alerts/Alerts.php';
 require 'user/User.php';
 require 'countryHelper/CountryHelper.php';
 
-
+function GetAppDomain(){
+    if (isset($_SERVER['HTTPS'])) {
+        $extraS = "s";
+    } else {
+        $extraS = "";
+    }
+    return "http" . $extraS . "://" . $_SERVER['HTTP_HOST'];
+}
