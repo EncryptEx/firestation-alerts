@@ -26,6 +26,7 @@ require 'auth/Token.php';
 require 'ui-alerts/Alerts.php';
 require 'user/User.php';
 require 'countryHelper/CountryHelper.php';
+require 'notifications/Notifications.php';
 
 function GetAppDomain(){
     if (isset($_SERVER['HTTPS'])) {
