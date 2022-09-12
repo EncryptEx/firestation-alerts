@@ -23,6 +23,11 @@ $alerts = new Alerts();
         <form action="./auth/register.php" method="POST" class="needs-validation row justify-content-center" novalidate>
             <div class="col-12 col-md-8 col-lg-6">
                 <h3>Sign up</h3>
+
+    <?php
+    $alerts->retrieveAlert();
+
+    ?>
                 <label for="realName" class="col-sm-2 col-form-label">Name</label>
                 <div class="input-group has-validation">
                     <input name="name" type="text" class="form-control" id="realName" required placeholder="John">
@@ -49,11 +54,6 @@ $alerts = new Alerts();
             </div>
         </form>
     </div>
-
-    <?php
-    $alerts->retrieveAlert();
-
-    ?>
     </div>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
