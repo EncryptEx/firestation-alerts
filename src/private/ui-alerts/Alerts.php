@@ -39,7 +39,7 @@ class Alerts
                 } // skip check if not numeric
                 switch ($_GET['s']) {
                     case 1:
-                        $alertMsg = "";
+                        $alertMsg = "You have registered successfully, now please check your inbox to enable your account.";
                         break;
 
                     default:

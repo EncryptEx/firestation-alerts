@@ -20,8 +20,14 @@ class Auth
         if ($selectStmt->rowCount() > 0) {
             return [
                 'success' => TRUE,
-                'data' => $selectStmt->fetch()[0],
+                'data' => $selectStmt->fetchAll()[0],
             ];
+        }
+    }
+    public function checkUserLogged($sessionId){
+        if(!isset($sessionId)) {
+            header('location:index.php');
+            die();
         }
     }
     public function Register(string $name, string $email, string $rawPassword, string $tempToken, int $tokenExpiryTimestamp){

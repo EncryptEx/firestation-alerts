@@ -18,7 +18,7 @@ $isLogged = isset($_SESSION['userId']);
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ml-5 justify-content-center mb-md-0">
                 <?php if ($isLogged) { ?>
-                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="dashboard.php" class="text-decoration-none link-dark">Dashboard</a></li>
                 <?php } ?>
             </ul>
 

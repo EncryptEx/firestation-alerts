@@ -22,6 +22,17 @@ require 'db/Database.php';
 new Database();
 require 'auth/Auth.php';
 require 'auth/Verification.php';
-require 'alerts/Alerts.php';
+require 'auth/Token.php';
+require 'ui-alerts/Alerts.php';
+require 'user/User.php';
+require 'countryHelper/CountryHelper.php';
+require 'notifications/Notifications.php';
 
-
+function GetAppDomain(){
+    if (isset($_SERVER['HTTPS'])) {
+        $extraS = "s";
+    } else {
+        $extraS = "";
+    }
+    return "http" . $extraS . "://" . $_SERVER['HTTP_HOST'];
+}
