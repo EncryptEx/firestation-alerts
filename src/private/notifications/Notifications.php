@@ -4,12 +4,12 @@ namespace Utils;
 
 class Notification
 {
-    public function Add($countryCode, $lat, $lon, $temp) {
+    public function Add($countryCode, $rawData, $lat, $lon, $temp) {
         global $pdo;
 
-        $SQL_insert = "INSERT INTO `notification` (id, countryCode, lat, lon, temp, timestamp) VALUES (NULL, :countryCode, :lat, :lon, :temp, :timestamp)";
+        $SQL_insert = "INSERT INTO `notification` (id, countryCode, rawData, lat, lon, temp, timestamp) VALUES (NULL, :countryCode, :rawData, :lat, :lon, :temp, :timestamp)";
         $inertStmt = $pdo->prepare($SQL_insert);
-        $input =   ['countryCode'=> $countryCode, 'lat'=> $lat, 'lon'=> $lon, 'temp'=> $temp, 'timestamp'=> time()];
+        $input =   ['countryCode'=> $countryCode, 'rawData'=>$rawData, 'lat'=> $lat, 'lon'=> $lon, 'temp'=> $temp, 'timestamp'=> time()];
         return  $inertStmt->execute($input);
     }
 

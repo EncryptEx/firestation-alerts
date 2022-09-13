@@ -120,14 +120,15 @@ $country = new CountryHelper;
                     ws.onmessage = function(e) {
                         console.log('message received:' + e.data);
                         var realdata = JSON.parse(e.data);
-                        clearInterval(animationVar);
+                        if(realdata.country_code != "<?php echo $userInfo['countryCode']; ?>"){ return; } // skip alert if is in other country
+                        console.log('actual alert:' + e.data);
                         var lat = realdata.coords.lat;
                         var lon = realdata.coords.lon;
                         loadMap(lat, lon);
+                        clearInterval(animationVar);
                         // thanks geocode.maps.co
                         // retireve city 
-                        var coordsInfo = JSON.parse(httpGet(`https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}`));
-                        locationText.innerHTML = htmlentities(coordsInfo.display_name);
+                        locationText.innerHTML = htmlentities(realdata.street);
                         GPSlocationText.innerHTML = "GPS coords: " + htmlentities(lat) + ", " + htmlentities(lon);
                         // hide loading text
                         text.style.display = "none";
@@ -213,12 +214,23 @@ $country = new CountryHelper;
             <h2>Lastest Alerts</h2>
             <div class="ccontainer">
                 <!-- thanks https://codepen.io/hassan-kamal/pen/NNvYEQ -->
-                <?php foreach ($notifications as $alert) { ?>
+                <?php foreach ($notifications as $alert) { 
+                    $alertInfo = json_decode($alert['rawData'], true);
+                    
+                    $city = $alertInfo['display_name'];
+                    if(isset($alertInfo['address']['city']) && $alertInfo['address']['city'] != NULL) {
+                        $city = $alertInfo['address']['city'];
+                    } elseif(isset($alertInfo['address']['town']) && $alertInfo['address']['town'] != NULL){
+                        $city = $alertInfo['address']['town'];
+                    } elseif(isset($alertInfo['address']['road']) && $alertInfo['address']['road'] != NULL){
+                        $city = $alertInfo['address']['road'];
+                    }
+                    ?>
                     <div class="timeline-block timeline-block-right">
                         <div class="marker"></div>
                         <div class="timeline-content">
-                            <h3>Alert nº<?php echo $alert['id']; ?></h3>
-                            <span></span>
+                            <h3>Alert in <?php echo $city; ?></h3>
+                            <span>Recieved at <?php echo Date("H:i:s, d M Y ", htmlentities($alert['timestamp']));?></span>
                             <p></p>
                             
                         </div>

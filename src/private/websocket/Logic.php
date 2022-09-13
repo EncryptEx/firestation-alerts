@@ -20,7 +20,7 @@ class Notification implements MessageComponentInterface {
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
-        $splitteddMsg = explode(" ", $msg);
+        $splitteddMsg = explode("|", $msg);
         // echo "Recieved NEW msg: " . $msg;
         // if(count($splitteddMsg) < 4){
             // return;
@@ -46,7 +46,7 @@ class Notification implements MessageComponentInterface {
             
                 // authentiated, now broadcast message.
                 foreach ($this->clients as $client) {
-                    $client->send($splitteddMsg[3]);
+                    $client->send(+$splitteddMsg[3]);
                 }
             
                 echo "Sent message correctly!";
