@@ -31,6 +31,13 @@ class Auth
             die();
         }
     }
+    public function checkUserNotLogged($sessionId){
+        if(isset($sessionId)) {
+            header('location:dashboard.php');
+            die();
+        }
+    }
+    
     public function Register(string $name, string $email, string $rawPassword, string $tempToken, int $tokenExpiryTimestamp){
         global $pdo;
         $password = hash("SHA256", $rawPassword);

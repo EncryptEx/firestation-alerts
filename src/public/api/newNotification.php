@@ -34,8 +34,15 @@ $url = 'https://geocode.maps.co/reverse?lat=' . $lat . '&lon='.$lon;
 
 $rawData = file_get_contents($url, false, $context); 
 $result = json_decode($rawData, true);
-$street = $result['display_name'];
-$countryCode = strtoupper($result['address']['country_code']);
+if(isset($result['error']) && $result['error'] != "" && $result['error'] != null) {
+    // failed when reverse location.
+    // send empty street and raw data
+    $countryCode = "UNABLE";
+    $street = "Unable to determine";
+} else {
+    $street = $result['display_name'];
+    $countryCode = strtoupper($result['address']['country_code']);
+}
 
 // add record to db
 use Utils\Notification;

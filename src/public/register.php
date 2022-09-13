@@ -4,8 +4,11 @@ session_start();
 require_once('./../private/utils.php');
 
 use Utils\Alerts;
+use Utils\Auth;
 
 $alerts = new Alerts();
+$auth = new Auth;
+$auth->checkUserNotLogged($_SESSION['userId']);
 ?>
 
 

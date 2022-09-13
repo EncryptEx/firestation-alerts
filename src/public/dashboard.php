@@ -30,7 +30,7 @@ $country = new CountryHelper;
         .bold {
             font-weight: bold;
         }
-    </style>
+       </style>
 </head>
 
 <body>
@@ -62,24 +62,24 @@ $country = new CountryHelper;
                 </h5>
             </div>
             <div class="col-4 col-md-4" id="map-box">
-                <div id="osm-map"></div>
-            </div>
-            <div class="col-12 col-md-3 text-md-end">
-                <a href="" class="btn btn-danger text-start m-1" style="width: 160px;">
-                    <span class="material-symbols-outlined align-middle">
-                        fire_truck
-                    </span> Call Firestation</a>
-                <a href="" class="btn btn-warning text-start m-1" style="width: 160px;">
-                    <span class="material-symbols-outlined align-middle">
-                        notification_important
-                    </span> Send Alert</a>
-                <a href="" class="btn btn-light text-start m-1" style="width: 160px;">
+                <div id="alert-map"></div>
+                </div>
+                <div class="col-12 col-md-3 text-md-end">
+                    <a href="" class="btn btn-danger text-start m-1" style="width: 160px;">
+                        <span class="material-symbols-outlined align-middle">
+                            fire_truck
+                        </span> Call Firestation</a>
+                        <a href="" class="btn btn-warning text-start m-1" style="width: 160px;">
+                            <span class="material-symbols-outlined align-middle">
+                                notification_important
+                            </span> Send Alert</a>
+                            <a href="" class="btn btn-light text-start m-1" style="width: 160px;">
                     <span class="material-symbols-outlined align-middle">
                         notifications_paused
                     </span> Ignore for now</a>
-
-            </div>
-            <script>
+                    
+                </div>
+                <script>
                 // script to animate the loading dots
                 var step = 0;
                 var animated = document.getElementById('animated');
@@ -120,11 +120,16 @@ $country = new CountryHelper;
                     ws.onmessage = function(e) {
                         console.log('message received:' + e.data);
                         var realdata = JSON.parse(e.data);
-                        if(realdata.country_code != "<?php echo $userInfo['countryCode']; ?>"){ return; } // skip alert if is in other country
-                        console.log('actual alert:' + e.data);
+                        if(realdata.country_code == "UNABLE"){
+                        } else if(realdata.country_code != "<?php echo $userInfo['countryCode']; ?>"){
+                            return; 
+                            // skip alert if is in other country
+                        } 
                         var lat = realdata.coords.lat;
                         var lon = realdata.coords.lon;
-                        loadMap(lat, lon);
+                        alertBox.style.display = "flex";
+                        loadMap(lat, lon, 'alert-map' ,'width:auto;height:300px;', 10);
+                        console.log('actual alert:' + e.data);
                         clearInterval(animationVar);
                         // thanks geocode.maps.co
                         // retireve city 
@@ -138,7 +143,6 @@ $country = new CountryHelper;
                         tempText.innerHTML = htmlentities(realdata.temp) + "ºC";
                         // add 
                         alertBoxDescText.innerHTML = "Recieved at " + new Date(htmlentities(realdata.timestamp) * 1000);
-                        alertBox.style.display = "flex";
                     };
                     ws.onclose = function() {
                         console.error("Connection ended!");
@@ -159,7 +163,7 @@ $country = new CountryHelper;
             <script>
                 function closeNotification() {
                     var animationVar = setInterval(animation, 450);
-                    var div = document.getElementById("osm-map");
+                    var div = document.getElementById("alert-map");
                     div.parentNode.removeChild(div);
                     var div = document.createElement("div");
                     document.getElementById("map-box").appendChild(div);
@@ -169,12 +173,12 @@ $country = new CountryHelper;
 
             <script>
                 // Script to load the map
-                function loadMap(lat, lng) {
+                function loadMap(lat, lng, elementId, style, zoom) {
                     // Where you want to render the map.
-                    var element = document.getElementById('osm-map');
+                    var element = document.getElementById(elementId);
 
                     // Height has to be set. You can do this in CSS too.
-                    element.style = 'width:auto;height:200px;';
+                    element.style = style;
 
                     // Create Leaflet map on map element.
                     var map = L.map(element);
@@ -188,7 +192,7 @@ $country = new CountryHelper;
                     var target = L.latLng(lat, lng);
 
                     // Set map's center to target with zoom 14.
-                    map.setView(target, 14);
+                    map.setView(target, zoom);
 
                     // Place a marker on the same location.
                     L.marker(target).addTo(map);
@@ -204,6 +208,7 @@ $country = new CountryHelper;
             </script>
 
         </div>
+        <br>
         <?php
 
         use Utils\Notification;
@@ -228,12 +233,25 @@ $country = new CountryHelper;
                     ?>
                     <div class="timeline-block timeline-block-right">
                         <div class="marker"></div>
-                        <div class="timeline-content">
-                            <h3>Alert in <?php echo $city; ?></h3>
+                        <a class="timeline-content text-decoration-none" href="view.php?id=<?php echo htmlentities($alert['id']); ?>">
+                        <div class="row">    
+                            <div class="col-5">
+                                <div id="mapId<?php echo htmlentities($alert['id']); ?>"></div>
+                                <script>
+                                    loadMap(<?php echo htmlentities($alert['lat']) .", ".htmlentities($alert['lon']).", 'mapId" . htmlentities($alert['id']) . "'"; ?> ,'width:auto;height:200px;margin-bottom:20px', 5);
+                                </script>
+                            </div>
+                            <div class="col-7">
+                        <h3>Alert in <?php echo $city; ?></h3>
                             <span>Recieved at <?php echo Date("H:i:s, d M Y ", htmlentities($alert['timestamp']));?></span>
+                            <br>
+                            <span><span class="material-symbols-outlined align-middle d-inline text-bold">location_on</span> GPS:  <?php echo htmlentities($alert['lat']) . ", " . htmlentities($alert['lon']); ?></span>
+                            <br>
+                            <span><span class="material-symbols-outlined align-middle d-inline text-bold">local_fire_department</span>  <?php echo htmlentities($alert['temp']); ?>ºC</span>
                             <p></p>
-                            
                         </div>
+                        </div>
+                </a>
                     </div>
                 <?php } ?>
             </div>
