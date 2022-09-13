@@ -23,6 +23,7 @@ class Auth
                 'data' => $selectStmt->fetchAll()[0],
             ];
         }
+        return ['success' => FALSE];
     }
     public function checkUserLogged($sessionId){
         if(!isset($sessionId)) {
