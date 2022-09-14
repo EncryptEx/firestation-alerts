@@ -42,48 +42,8 @@ $country = new CountryHelper;
     <div class="container">
         <br>
         <h1>Watching all alerts in <?php echo $country->GetCountryName($userInfo['countryCode']); ?></h1>
-        <h4 id="idleText">Looking for new notifications <span id="animated">.</span></h4>
+        <h4 id="idleText" class="fs-6 fs-md-4">Looking for new notifications <span id="animated">.</span></h4>
         <div id="alertBoxParent"></div>
-        <div id="alertBox" class="alert alert-danger row" style="display:none;">
-            <div class="col-8 col-md-5">
-                <h2 id="alertBoxText" class="bold">New Alert!</h2>
-                <p id="alertBoxDescText" class="bold"></p>
-                <span class="material-symbols-outlined align-middle d-inline">location_on</span>
-                <h5 id="locationGPS" class="d-inline align-middle">
-                    Location
-                </h5>
-                <br>
-                <br>
-                <span class="material-symbols-outlined align-middle d-inline">location_on</span>
-                <h5 id="location" class="d-inline align-middle">
-                    Location
-                </h5>
-                <br>
-                <br>
-                <span class="material-symbols-outlined align-middle d-inline">local_fire_department</span>
-                <h5 id="temperature" class="d-inline-block align-middle">
-                    Temp
-                </h5>
-            </div>
-            <div class="col-4 col-md-4" id="map-box">
-                <div id="alert-map"></div>
-            </div>
-            <div class="col-12 col-md-3 text-md-end">
-                <a href="" class="btn btn-danger text-start m-1">
-                    <span class="material-symbols-outlined align-middle">
-                        fire_truck
-                    </span> Call Firestation</a>
-                <a href="" class="btn btn-warning text-start m-1">
-                    <span class="material-symbols-outlined align-middle">
-                        notification_important
-                    </span> Send Alert</a>
-                <a href="" class="btn btn-light text-start m-1">
-                    <span class="material-symbols-outlined align-middle">
-                        notifications_paused
-                    </span> Ignore for now</a>
-
-            </div>
-        </div>
         <script>
             // script to animate the loading dots
             var step = 0;
@@ -267,13 +227,13 @@ $country = new CountryHelper;
                         <div class="marker"></div>
                         <a class="timeline-content text-decoration-none" href="view.php?id=<?php echo htmlentities($alert['id']); ?>">
                             <div class="row">
-                                <div class="col-5">
+                                <div class="col-5 d-none d-md-block col-lg-4">
                                     <div id="mapId<?php echo htmlentities($alert['id']); ?>"></div>
                                     <script>
                                         loadMap(<?php echo htmlentities($alert['lat']) . ", " . htmlentities($alert['lon']) . ", 'mapId" . htmlentities($alert['id']) . "'"; ?>, 'width:auto;height:200px;margin-bottom:20px', 5);
                                     </script>
                                 </div>
-                                <div class="col-7">
+                                <div class="col-12 col-md-7 col-lg-8">
                                     <h3>Alert in <?php echo $city; ?></h3>
                                     <span>Recieved at <?php echo Date("H:i:s, d M Y ", htmlentities($alert['timestamp'])); ?></span>
                                     <br>
