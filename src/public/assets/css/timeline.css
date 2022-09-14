@@ -1,7 +1,7 @@
 .ccontainer {
-  width: 120%;
+  width: 100%;
   padding: 50px 0;
-  margin-left: -54%;
+  margin-left: 10px;
   position: relative;
   overflow: hidden;
 }
@@ -73,21 +73,21 @@
 }
 
 
-@media screen and (max-width: 768px) {
-  .ccontainer:before {
-     left: 8px;
-     width: 2px;
-  }
-  .timeline-block {
-     width: 100%;
-     margin-bottom: 30px;
-  }
-  .timeline-block-right {
-     float: none;
-  }
+.ccontainer:before {
+  left: 8px;
+  width: 2px;
+}
 
-  .timeline-block-left {
-     float: none;
-     direction: ltr;
-  }
+.timeline-block {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.timeline-block-right {
+  float: none;
+}
+
+.timeline-block-left {
+  float: none;
+  direction: ltr;
 }
