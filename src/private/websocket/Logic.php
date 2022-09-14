@@ -46,7 +46,7 @@ class Notification implements MessageComponentInterface {
             
                 // authentiated, now broadcast message.
                 foreach ($this->clients as $client) {
-                    $client->send(+$splitteddMsg[3]);
+                    $client->send($splitteddMsg[3]);
                 }
             
                 echo "Sent message correctly!";
