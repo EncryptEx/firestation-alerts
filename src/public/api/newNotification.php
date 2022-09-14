@@ -56,7 +56,7 @@ $notification->Add($countryCode, $rawData, $lat, $lon, $temp);
     var message = '{"country_code":"<?php echo addslashes($countryCode); ?>","street":"<?php echo addslashes($street); ?>","coords":{"lat":<?php echo addslashes($_GET["lat"]); ?>,"lon":<?php echo addslashes($_GET["lon"])?>},"temp":<?php echo addslashes($_GET["temp"]) ?>,"timestamp":<?php echo time(); ?>}';
     var conn = new WebSocket('ws://localhost:8080');
     conn.onopen = function(e) {
-        console.log("Connection established... sending data");
+        console.log("Connection established... sending data: " + message);
         conn.send("BROADCAST-ALERT|"+key+"|"+encryptedKey+"|"+message);
     };
 
