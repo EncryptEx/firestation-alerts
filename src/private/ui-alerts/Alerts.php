@@ -24,6 +24,12 @@ class Alerts
                     case 4:
                         $alertMsg = "Your account has been suspended.";
                         break;
+                    case 5:
+                        $alertMsg = "No notification ID specified";
+                        break;
+                    case 6:
+                        $alertMsg = "That notification ID does not exist";
+                        break;
 
                     default:
                         $alertMsg = "Something did not work as expected";

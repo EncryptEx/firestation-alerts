@@ -26,4 +26,28 @@ class Notification
         }
         return [];
     }
+    public function get(int $id, string $countryCode){
+        global $pdo;
+
+        $SQL_SELECT = "SELECT * FROM `notification` WHERE id=:id AND countryCode=:countryCode LIMIT 1";
+        $selectStmt = $pdo->prepare($SQL_SELECT);
+        $input =   ['id'=> $id, 'countryCode'=> $countryCode];
+        $selectStmt->execute($input);
+
+        if ($selectStmt->rowCount() > 0) {
+            return $selectStmt->FetchAll()[0];
+        }
+        return FALSE;
+    }
+    public function getStreet($entireJSONparsedData){
+        $city = $entireJSONparsedData['display_name'];
+        if (isset($entireJSONparsedData['address']['city']) && $entireJSONparsedData['address']['city'] != NULL) {
+            $city = $entireJSONparsedData['address']['city'];
+        } elseif (isset($entireJSONparsedData['address']['town']) && $entireJSONparsedData['address']['town'] != NULL) {
+            $city = $entireJSONparsedData['address']['town'];
+        } elseif (isset($entireJSONparsedData['address']['road']) && $entireJSONparsedData['address']['road'] != NULL) {
+            $city = $entireJSONparsedData['address']['road'];
+        }
+        return $city;
+    }
 }
