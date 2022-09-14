@@ -272,14 +272,7 @@ $country = new CountryHelper;
                 L.marker(target).addTo(map);
             }
         </script>
-        <script>
-            function httpGet(theUrl) {
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", theUrl, false); // false for synchronous request
-                xmlHttp.send(null);
-                return xmlHttp.responseText;
-            }
-        </script>
+        
 
 
         <br>
