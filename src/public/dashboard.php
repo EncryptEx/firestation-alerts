@@ -25,7 +25,7 @@ $country = new CountryHelper;
     <?php require realpath(__DIR__ . '/../private/templates/meta.html'); ?>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/timeline.css">
+    <link rel="stylesheet" href="./assets/css/timeline.css">
     <style>
         .bold {
             font-weight: bold;
@@ -245,36 +245,8 @@ $country = new CountryHelper;
             }
         </script>
 
-        <script>
-            // Script to load the map
-            function loadMap(lat, lng, elementId, style, zoom) {
-                // Where you want to render the map.
-                var element = document.getElementById(elementId);
-
-                // Height has to be set. 
-                element.style = style;
-
-                // Create Leaflet map on map element.
-                var map = L.map(element);
-
-                // Add OSM tile layer to the Leaflet map.
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-
-                // Target's GPS coordinates.
-                var target = L.latLng(lat, lng);
-
-                // Set map's center to target with specified zoom.
-                map.setView(target, zoom);
-
-                // Place a marker on the same location.
-                L.marker(target).addTo(map);
-            }
-        </script>
-        
-
-
+        <script src="./assets/js/map.js"></script>
+     
         <br>
         <?php
 
