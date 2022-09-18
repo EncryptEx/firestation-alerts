@@ -17,6 +17,10 @@ $dotenv->required(
         'MAIL_HOST',
 
         // Hash generator secret
-        'HASH_SALT'
+        'HASH_SALT',
+        'HASH_SALT2',
+
+        // api access key
+        'API_KEY'
         ]
 );

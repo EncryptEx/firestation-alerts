@@ -13,7 +13,22 @@ class Alerts
                 } // skip check if not numeric
                 switch ($_GET['e']) {
                     case 1:
+                        $alertMsg = "No values recieved";
+                        break;
+                    case 2:
                         $alertMsg = "User and password do not match";
+                        break;
+                    case 3:
+                        $alertMsg = "Your account needs an email verification, please check your email.";
+                        break;
+                    case 4:
+                        $alertMsg = "Your account has been suspended.";
+                        break;
+                    case 5:
+                        $alertMsg = "No notification ID specified";
+                        break;
+                    case 6:
+                        $alertMsg = "That notification ID does not exist";
                         break;
 
                     default:
@@ -30,7 +45,7 @@ class Alerts
                 } // skip check if not numeric
                 switch ($_GET['s']) {
                     case 1:
-                        $alertMsg = "";
+                        $alertMsg = "You have registered successfully, now please check your inbox to enable your account.";
                         break;
 
                     default:
