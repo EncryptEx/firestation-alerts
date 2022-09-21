@@ -6,6 +6,7 @@
 <img src="https://img.shields.io/github/languages/top/EncryptEx/firestation-alerts"/>
 <img src="https://tokei.ekzhang.com/b1/github/EncryptEx/firestation-alerts"/>
 <img src="https://img.shields.io/github/last-commit/EncryptEx/firestation-alerts"/>
+</p>
 
 A platform part of a [Research Project](##Research%20Project) (TR of 2nd Batxillerat in Catalunya). The functionality is pretty simple to understand: When endpoint ``/api/newNotification.php`` is requested with correct credentials and passing the [necessary parameters](##Api%20Parameters), it will pop up an alert to all connected clients whithin the country affected. In case that the coordinates point to international waters, the alert will pop up in all clients with no restriction at all.
 
