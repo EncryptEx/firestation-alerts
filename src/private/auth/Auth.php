@@ -38,13 +38,13 @@ class Auth
         }
     }
     
-    public function Register(string $name, string $email, string $rawPassword, string $tempToken, int $tokenExpiryTimestamp){
+    public function Register(string $name, string $countryCode, string $email, string $rawPassword, string $tempToken, int $tokenExpiryTimestamp){
         global $pdo;
         $password = hash("SHA256", $rawPassword);
 
-        $SQL_SELECT = "INSERT INTO `users` (id, name, email, password, status, tempToken, tokenExp) VALUES (NULL, :name, :email, :password, :status, :tempToken, :tokenExp)";
+        $SQL_SELECT = "INSERT INTO `users` (id, name, countryCode, email, password, status, tempToken, tokenExp) VALUES (NULL, :name, :countryCode, :email, :password, :status, :tempToken, :tokenExp)";
         $selectStmt = $pdo->prepare($SQL_SELECT);
-        $input =   ['name'=>$name, 'email'=> $email, 'password'=>$password, 'status'=>0, 'tempToken' => $tempToken, 'tokenExp' => $tokenExpiryTimestamp];
+        $input =   ['name'=>$name, 'countryCode'=>$countryCode ,'email'=> $email, 'password'=>$password, 'status'=>0, 'tempToken' => $tempToken, 'tokenExp' => $tokenExpiryTimestamp];
         return $selectStmt->execute($input);
     }
 }
