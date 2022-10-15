@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2022 a las 08:04:01
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Tiempo de generación: 15-10-2022 a las 20:59:53
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `firestation`
+-- Base de datos: `firestationalerts`
 --
 
 -- --------------------------------------------------------
@@ -37,8 +37,6 @@ CREATE TABLE `notification` (
   `timestamp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `tokens`
 --
@@ -48,8 +46,6 @@ CREATE TABLE `tokens` (
   `token` varchar(256) NOT NULL,
   `timestamp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `users`
@@ -61,9 +57,10 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(256) NOT NULL,
   `countryCode` varchar(2) NOT NULL,
-  `status` int(1) NOT NULL
+  `status` int(1) NOT NULL,
+  `tempToken` varchar(10) NOT NULL,
+  `tokenExp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Índices para tablas volcadas
 --
@@ -72,13 +69,14 @@ CREATE TABLE `users` (
 -- Indices de la tabla `notification`
 --
 ALTER TABLE `notification`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `countryCode` (`countryCode`);
 
 --
 -- Indices de la tabla `tokens`
 --
 ALTER TABLE `tokens`
-  ADD PRIMARY KEY (`id`,`token`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `users`
