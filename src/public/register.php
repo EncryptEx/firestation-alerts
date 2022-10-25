@@ -8,7 +8,7 @@ use Utils\Auth;
 use Utils\CountryHelper;
 
 $alerts = new Alerts();
-$auth = new Auth;
+$auth = new Auth();
 $auth->checkUserNotLogged($_SESSION['userId']);
 ?>
 
@@ -31,7 +31,7 @@ $auth->checkUserNotLogged($_SESSION['userId']);
     <?php
     $alerts->retrieveAlert();
 
-    ?>
+?>
                 <label for="realName" class="col-sm-2 col-form-label">Name</label>
                 <div class="input-group has-validation">
                     <input name="name" type="text" class="form-control" id="realName" required placeholder="John">
@@ -43,12 +43,12 @@ $auth->checkUserNotLogged($_SESSION['userId']);
                 <div class="input-group has-validation">
                     <select name="countryCode" type="text" class="form-control" id="cc" required>
                         <?php
-                        $countryHelper = new CountryHelper();
-                        $options = $countryHelper->getAllCountries();
-                        foreach ($options as $cc => $cname) {?>
-                           <option value="<?php echo $cc; ?>"><?php echo $cname; ?></option> 
+                    $countryHelper = new CountryHelper();
+$options = $countryHelper->getAllCountries();
+foreach ($options as $cc => $cname) {?>
+                           <option value="<?php echo $cc; ?>"><?php echo $cname; ?></option>
                         <?php }
-                        ?>
+?>
                     </select>
                     <div class="invalid-feedback">
                         Please introduce an email.
