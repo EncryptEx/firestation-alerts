@@ -46,7 +46,7 @@ $auth->checkUserNotLogged($_SESSION['userId']);
                     $countryHelper = new CountryHelper();
 $options = $countryHelper->getAllCountries();
 foreach ($options as $cc => $cname) {?>
-                           <option value="<?php echo $cc; ?>"><?php echo $cname; ?></option> 
+                           <option value="<?php echo $cc; ?>"><?php echo $cname; ?></option>
                         <?php }
 ?>
                     </select>
