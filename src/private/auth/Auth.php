@@ -1,14 +1,17 @@
-<?php 
+<?php
 
-/** 
+
+/**
  * Class to handle authentication
  * @author Jaume López (EncryptEx)
  */
+
 namespace Utils;
 
 class Auth
 {
-    public function login(string $email, string $rawPassword){
+    public function login(string $email, string $rawPassword)
+    {
         global $pdo;
         $password = hash("SHA256", $rawPassword);
 
@@ -19,33 +22,35 @@ class Auth
 
         if ($selectStmt->rowCount() > 0) {
             return [
-                'success' => TRUE,
+                'success' => true,
                 'data' => $selectStmt->fetchAll()[0],
             ];
         }
-        return ['success' => FALSE];
+        return ['success' => false];
     }
-    public function checkUserLogged($sessionId){
-        if(!isset($sessionId)) {
+    public function checkUserLogged($sessionId)
+    {
+        if (!isset($sessionId)) {
             header('location:index.php');
             die();
         }
     }
-    public function checkUserNotLogged($sessionId){
-        if(isset($sessionId)) {
+    public function checkUserNotLogged($sessionId)
+    {
+        if (isset($sessionId)) {
             header('location:dashboard.php');
             die();
         }
     }
-    
-    public function Register(string $name, string $email, string $rawPassword, string $tempToken, int $tokenExpiryTimestamp){
+
+    public function Register(string $name, string $countryCode, string $email, string $rawPassword, string $tempToken, int $tokenExpiryTimestamp)
+    {
         global $pdo;
         $password = hash("SHA256", $rawPassword);
 
-        $SQL_SELECT = "INSERT INTO `users` (id, name, email, password, status, tempToken, tokenExp) VALUES (NULL, :name, :email, :password, :status, :tempToken, :tokenExp)";
+        $SQL_SELECT = "INSERT INTO `users` (id, name, countryCode, email, password, status, tempToken, tokenExp) VALUES (NULL, :name, :countryCode, :email, :password, :status, :tempToken, :tokenExp)";
         $selectStmt = $pdo->prepare($SQL_SELECT);
-        $input =   ['name'=>$name, 'email'=> $email, 'password'=>$password, 'status'=>0, 'tempToken' => $tempToken, 'tokenExp' => $tokenExpiryTimestamp];
+        $input =   ['name'=>$name, 'countryCode'=>$countryCode ,'email'=> $email, 'password'=>$password, 'status'=>0, 'tempToken' => $tempToken, 'tokenExp' => $tokenExpiryTimestamp];
         return $selectStmt->execute($input);
     }
 }
-
