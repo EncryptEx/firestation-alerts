@@ -50,7 +50,7 @@ Link to Research Paper is comming soon and will be available in few weeks (proje
 
 ### Suggestions or questions
 
-If you feel that something is wrong in this README file or you need help while setting up this project, feel free to contact or open a [GitHub Issue](https://github.com/EncryptEx/firestation-alert/issues/new).
+If you feel that something is wrong in this README file or you need help while setting up this project, feel free to contact or open a [GitHub Issue](https://github.com/EncryptEx/firestation-alerts/issues/new).
 
 ---
 
