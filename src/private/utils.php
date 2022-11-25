@@ -1,10 +1,13 @@
-<?php 
+<?php
+
 
 /**
  * Main utilities document.
  * @author Jaume López (EncryptEx)
  */
+
 namespace Utils;
+
 # start vendors
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -13,6 +16,9 @@ date_default_timezone_set('Europe/Madrid');
 
 # import all credentials to $_ENV superglobal
 require 'cred.php';
+
+# Hide notices
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 # import PDO
 use PDO;
@@ -28,7 +34,8 @@ require 'user/User.php';
 require 'countryHelper/CountryHelper.php';
 require 'notifications/Notifications.php';
 
-function GetAppDomain(){
+function GetAppDomain()
+{
     if (isset($_SERVER['HTTPS'])) {
         $extraS = "s";
     } else {
