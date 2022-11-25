@@ -1,10 +1,13 @@
-<?php 
+<?php
+
 
 /**
  * Main utilities document.
  * @author Jaume López (EncryptEx)
  */
+
 namespace Utils;
+
 # start vendors
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -31,7 +34,8 @@ require 'user/User.php';
 require 'countryHelper/CountryHelper.php';
 require 'notifications/Notifications.php';
 
-function GetAppDomain(){
+function GetAppDomain()
+{
     if (isset($_SERVER['HTTPS'])) {
         $extraS = "s";
     } else {

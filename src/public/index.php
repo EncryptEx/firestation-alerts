@@ -4,7 +4,7 @@ require './../private/utils.php';
 
 use Utils\Auth;
 
-$auth = new Auth;
+$auth = new Auth();
 $auth->checkUserNotLogged($_SESSION['userId']);
 ?>
 <!DOCTYPE html>
