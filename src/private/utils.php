@@ -14,6 +14,9 @@ date_default_timezone_set('Europe/Madrid');
 # import all credentials to $_ENV superglobal
 require 'cred.php';
 
+# Hide notices
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
 # import PDO
 use PDO;
 
