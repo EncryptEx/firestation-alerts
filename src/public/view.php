@@ -80,7 +80,7 @@ $street = $notifications->getStreet($notificationInfo);
                 <div class="mb-4">
                     <span class="material-symbols-outlined align-middle d-inline">location_on</span>
                     <h5 id="location" class="d-inline align-middle">
-                        <?php echo date("d M Y H:i:s", $notification['timestamp']) ?>
+                        <?php echo json_decode($notification['rawData'])->display_name; ?>
                     </h5>
                 </div>
 
