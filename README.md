@@ -4,7 +4,6 @@
 <p align="center">
 <img src="https://img.shields.io/github/languages/code-size/EncryptEx/firestation-alerts"/>
 <img src="https://img.shields.io/github/languages/top/EncryptEx/firestation-alerts"/>
-<img src="https://tokei.ekzhang.com/b1/github/EncryptEx/firestation-alerts"/>
 <img src="https://img.shields.io/github/last-commit/EncryptEx/firestation-alerts"/>
 </p>
 
@@ -38,13 +37,13 @@ This is only a little part of the final practical part of the research project. 
 
 ## Installation
 
-The installation process will be described in the [PDF](##Research%20Project)
+The installation process will be described in the PDF of the [Research Project](##Research%20Project)
 
 ---
 
 ## Research Project
 
-Link to Research Paper is comming soon and will be available in few weeks (project not finished yet).
+Link to Research Paper can be found [here](https://jaumelopez.dev/projects.php)
 
 ---
 
